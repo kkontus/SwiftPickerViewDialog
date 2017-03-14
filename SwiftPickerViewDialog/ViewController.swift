@@ -9,14 +9,14 @@
 import UIKit
 
 enum DialogPickerViewEnum {
-    case Period
-    case Countries
-    case Sites
-    case Zones
+    case period
+    case countries
+    case sites
+    case zones
 }
 
 protocol DialogPickerViewDelegate {
-    func onPickerValueChange(component: DialogPickerViewEnum, value: String)
+    func onPickerValueChange(_ component: DialogPickerViewEnum, value: String)
 }
 
 class ViewController: UIViewController, DialogPickerViewDelegate {
@@ -32,20 +32,20 @@ class ViewController: UIViewController, DialogPickerViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onButtonClick(sender: UIButton) {
+    @IBAction func onButtonClick(_ sender: UIButton) {
         let pickerData = ["Croatia","Bulgaria","Ireland","Ukraine","Romania","Spain","Hungary","Poland"]
         pickerViewDialogViewController = PickerViewDialogViewController()
         pickerViewDialogViewController.titleDialog = "Countries"
         pickerViewDialogViewController.pickerData = pickerData
         pickerViewDialogViewController.defaultValue = pickerData[0]
-        pickerViewDialogViewController.componentName = DialogPickerViewEnum.Countries
+        pickerViewDialogViewController.componentName = DialogPickerViewEnum.countries
         pickerViewDialogViewController.delegateDialogPickerView = self
-        pickerViewDialogViewController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
-        self.presentViewController(pickerViewDialogViewController, animated: false, completion: nil)
+        pickerViewDialogViewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        self.present(pickerViewDialogViewController, animated: false, completion: nil)
     }
     
-    func onPickerValueChange(component: DialogPickerViewEnum, value: String) {
-        print("\(self.dynamicType) onPickerValueChange")
+    func onPickerValueChange(_ component: DialogPickerViewEnum, value: String) {
+        print("\(type(of: self)) onPickerValueChange")
         print(component)
         print(value)
     }
